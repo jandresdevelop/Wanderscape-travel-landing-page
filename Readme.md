@@ -13,8 +13,6 @@ This project started as a simple practice landing page and was transformed into 
 
 ## Preview
 
-Add a screenshot once available:
-
 ```md
-![WanderScape Travel preview](./assets/screenshots/homepage.png)
+![WanderScape Travel preview](./assets/images/preview-cover.png)
 ```
