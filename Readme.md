@@ -1,18 +1,12 @@
 # WanderScape Travel Landing Page
 
-A portfolio-ready travel landing page built with semantic HTML, modern CSS, and vanilla JavaScript.
+A premium, portfolio-ready travel landing page built with semantic HTML, modern CSS, and vanilla JavaScript.
 
-This project started as a simple practice landing page and was transformed into a more polished, production-inspired frontend project focused on:
+This project was created as an evolution from a basic practice landing page into a more polished frontend project with a stronger focus on:
 
 - semantic structure
-- responsive design
 - accessibility
-- UI polish
+- responsive design
+- user experience
 - maintainable code organization
-- better user experience
-
-## Preview
-
-```md
-![WanderScape Travel preview](./assets/images/preview-cover.png)
-```
+- portfolio-level presentation
