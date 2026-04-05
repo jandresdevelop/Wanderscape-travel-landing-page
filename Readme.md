@@ -10,3 +10,7 @@ This project was created as an evolution from a basic practice landing page into
 - user experience
 - maintainable code organization
 - portfolio-level presentation
+
+## Screenshot
+
+![Main View](assets/screenshots/preview-cover.png)
