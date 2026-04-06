@@ -85,6 +85,148 @@ WanderScape-Travel/
         └── preview-cover.png
 ```
 
+## Design and Development Goals
+
+This project was improved with the intention of reaching a **portfolio premium** standard appropriate for a **semi-senior or senior-style presentation**.
+
+Key goals included:
+
+- creating a strong visual identity,
+- improving perceived product quality,
+- making the interface feel more realistic and conversion-oriented,
+- reinforcing accessibility and semantic structure,
+- keeping the codebase readable and maintainable.
+
+---
+
+## Accessibility Considerations
+
+Accessibility was considered throughout the project, including:
+
+- semantic landmarks (`header`, `main`, `section`, `footer`, `nav`)
+- skip link for keyboard users
+- visible `:focus-visible` states
+- descriptive labels for form controls
+- `aria-live` regions for validation feedback
+- `aria-expanded` and `aria-controls` for mobile navigation
+- reduced-motion support with `prefers-reduced-motion`
+- meaningful alt text for content images
+- keyboard support for menu closing with `Escape`
+
+---
+
+## SEO Considerations
+
+The project includes foundational SEO improvements such as:
+
+- descriptive page title
+- meta description
+- Open Graph metadata
+- Twitter card metadata
+- canonical URL
+- theme color
+- structured data using JSON-LD (`TravelAgency`)
+
+---
+
+## JavaScript Functionality
+
+The JavaScript layer is organized by responsibility and includes:
+
+- mobile navigation behavior
+- sticky header scroll state
+- active navigation link tracking
+- scroll progress bar updates
+- textarea character counter
+- client-side form validation
+- reveal-on-scroll animation logic
+- animated trust bar counters
+
+---
+
+## Form Validation
+
+The contact form includes client-side validation for:
+
+- full name
+- email address
+- preferred package
+- number of travelers
+- destination field length
+- message minimum and maximum length
+
+Validation feedback is shown inline and announced through accessible status messaging.
+
+> **Note:** this project currently simulates form submission on the frontend.  
+> For production use, the form should be connected to a real backend or form handling service.
+
+---
+
+## Performance Notes
+
+Some performance-conscious choices included:
+
+- optimized `.webp` image usage
+- `loading="lazy"` on below-the-fold images
+- preloading of the hero image
+- lightweight JavaScript without external dependencies
+- reduced-motion handling for animation-sensitive users
+
+Further production optimizations could include:
+
+- self-hosted fonts
+- AVIF image formats
+- CSS/JS minification
+- backend-powered form handling
+
+---
+
+## How to Run Locally
+
+Because this is a static frontend project, you can run it locally very easily.
+
+### Option 1: Open directly
+
+Open `index.html` in your browser.
+
+### Option 2: Use a local server
+
+Using VS Code with Live Server is recommended.
+
+#### Example
+
+1. Clone the repository
+2. Open the project folder in VS Code
+3. Run with Live Server
+
+---
+
+## Installation
+
+```bash
+git clone https://github.com/jandresdevelop/Wanderscape-travel-landing-page
+cd wanderscape-travel
+```
+
+Then open the project in your browser or local development server.
+
+---
+
+## Author
+
+**Jose Andres Hernandez**
+
+- GitHub: [https://github.com/jandresdevelop](https://github.com/jandresdevelop)
+- Email: [jandresdevelop@gmail.com](jandresdevelop@gmail.com)
+
+---
+
+## License
+
+This project is for educational and portfolio purposes.
+
+If you want, you can use the [MIT License](https://opensource.org/licenses/MIT) for open-source publication.
+
 ## Screenshot
 
 ![Main View](assets/screenshots/preview-cover.png)
