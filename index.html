@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>WanderScape Travel | Premium Travel Experiences</title>
+    <title>WanderScape Travel | Curated Premium Travel Experiences</title>
     <meta
       name="description"
-      content="Discover curated travel experiences, premium itineraries, and personalized trip planning with WanderScape Travel."
+      content="Discover curated luxury-inspired travel experiences, tailored itineraries, and seamless trip planning with WanderScape Travel."
     />
     <meta name="author" content="Jose Andres Hernandez" />
     <meta name="theme-color" content="#0f766e" />
@@ -14,52 +14,71 @@
     <meta property="og:type" content="website" />
     <meta
       property="og:title"
-      content="WanderScape Travel | Premium Travel Experiences"
+      content="WanderScape Travel | Curated Premium Travel Experiences"
     />
     <meta
       property="og:description"
-      content="Discover curated travel experiences, premium itineraries, and personalized trip planning with WanderScape Travel."
+      content="Discover curated luxury-inspired travel experiences, tailored itineraries, and seamless trip planning with WanderScape Travel."
     />
-    <meta property="og:url" content="#" />
+    <meta property="og:url" content="https://wanderscape-demo.vercel.app/" />
     <meta
       property="og:image"
-      content="../assets/screenshots/preview-cover.png"
+      content="https://wanderscape-demo.vercel.app/assets/screenshots/preview-cover.png"
     />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta
       name="twitter:title"
-      content="WanderScape Travel | Premium Travel Experiences"
+      content="WanderScape Travel | Curated Premium Travel Experiences"
     />
     <meta
       name="twitter:description"
-      content="Discover curated travel experiences, premium itineraries, and personalized trip planning with WanderScape Travel."
+      content="Discover curated luxury-inspired travel experiences, tailored itineraries, and seamless trip planning with WanderScape Travel."
     />
     <meta
       name="twitter:image"
-      content="../assets/screenshots/preview-cover.png"
+      content="https://wanderscape-demo.vercel.app/assets/screenshots/preview-cover.png"
     />
 
-    <link rel="canonical" href="#" />
+    <link rel="canonical" href="https://wanderscape-demo.vercel.app/" />
     <link rel="icon" href="./assets/favi.ico" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
       rel="stylesheet"
     />
 
+    <link rel="preload" as="image" href="./assets/images/hero-beach.webp" />
     <link rel="stylesheet" href="./css/styles.css" />
     <script src="./js/script.js" defer></script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TravelAgency",
+        "name": "WanderScape Travel",
+        "url": "https://wanderscape-demo.vercel.app/",
+        "description": "Curated premium travel experiences with personalized itineraries and seamless planning.",
+        "email": "hello@wanderscape.com",
+        "telephone": "+10000000000"
+      }
+    </script>
   </head>
+
   <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
-    <header class="site-header">
+    <div class="scroll-progress" aria-hidden="true">
+      <span class="scroll-progress-bar"></span>
+    </div>
+
+    <header class="site-header" id="top">
       <div class="topbar">
         <div class="container topbar-inner">
-          <a href="#" class="logo" aria-label="WanderScape Travel home">
-            WanderScape Travel
+          <a href="#top" class="logo" aria-label="WanderScape Travel home">
+            <span class="logo-mark" aria-hidden="true">✦</span>
+            <span class="logo-text">WanderScape Travel</span>
           </a>
 
           <button
@@ -80,114 +99,129 @@
             aria-label="Primary navigation"
           >
             <ul class="nav-list">
-              <li><a href="#packages">Packages</a></li>
-              <li><a href="#itineraries">Itineraries</a></li>
-              <li><a href="#benefits">Why Us</a></li>
-              <li><a href="#testimonials">Reviews</a></li>
-              <li><a href="#faq">FAQ</a></li>
-              <li><a href="#contact">Contact</a></li>
+              <li><a href="#packages" data-nav-link>Packages</a></li>
+              <li><a href="#itineraries" data-nav-link>Itineraries</a></li>
+              <li><a href="#benefits" data-nav-link>Why Us</a></li>
+              <li><a href="#testimonials" data-nav-link>Reviews</a></li>
+              <li><a href="#faq" data-nav-link>FAQ</a></li>
+              <li><a href="#contact" data-nav-link>Contact</a></li>
             </ul>
           </nav>
+
+          <a href="#contact" class="btn btn-nav">Plan Your Trip</a>
         </div>
       </div>
 
       <div class="container">
         <section class="hero" aria-labelledby="hero-title">
           <div class="hero-grid">
-            <div class="hero-copy">
-              <span class="eyebrow"
-                >Tailored journeys for modern explorers</span
-              >
+            <div class="hero-copy reveal">
+              <span class="eyebrow">Curated journeys for modern travelers</span>
+
               <h1 id="hero-title">
-                Discover extraordinary destinations with premium planning
+                Plan unforgettable travel experiences with premium, tailored
+                itineraries
               </h1>
-              <p>
-                From iconic European landmarks to alpine adventures and tropical
-                hideaways, we design memorable travel experiences that combine
-                comfort, authenticity, and peace of mind.
+
+              <p class="hero-description">
+                From iconic European cities to alpine escapes and tropical
+                coastlines, WanderScape designs refined journeys shaped around
+                your pace, preferences, and comfort.
               </p>
 
               <div class="hero-actions">
                 <a href="#contact" class="btn btn-primary">Start Planning</a>
                 <a href="#itineraries" class="btn btn-secondary"
-                  >Explore Trips</a
+                  >View Itineraries</a
                 >
+              </div>
+
+              <div class="hero-proof" aria-label="Traveler trust indicators">
+                <div class="rating-badge">
+                  <span class="rating-stars" aria-hidden="true">★★★★★</span>
+                  <span>Rated 4.9/5 by 2,000+ travelers</span>
+                </div>
               </div>
 
               <ul class="hero-highlights" aria-label="Travel highlights">
                 <li>Handpicked stays</li>
-                <li>Flexible itineraries</li>
+                <li>Flexible planning</li>
                 <li>24/7 support</li>
               </ul>
             </div>
 
-            <aside class="hero-card" aria-label="Company travel highlights">
-              <h2>Plan with confidence</h2>
-              <p>
-                Our travel specialists create seamless itineraries for couples,
-                families, and explorers looking for memorable and
-                well-structured journeys.
-              </p>
+            <aside class="hero-card reveal" aria-label="Travel overview">
+              <div class="hero-card-top">
+                <p class="hero-card-label">Featured journey</p>
+                <h2>Italian Summer Escape</h2>
+                <p>
+                  A curated route through Rome, Florence, and the Amalfi Coast
+                  designed for travelers seeking culture, comfort, and elevated
+                  local experiences.
+                </p>
+              </div>
 
-              <div class="hero-stats">
+              <div class="hero-card-meta">
                 <div class="stat">
-                  <strong>120+</strong>
-                  <span>Destinations curated</span>
+                  <strong>8 days</strong>
+                  <span>Balanced itinerary</span>
                 </div>
                 <div class="stat">
-                  <strong>4.9/5</strong>
-                  <span>Average traveler rating</span>
+                  <strong>From \$2,400</strong>
+                  <span>Per traveler</span>
                 </div>
                 <div class="stat">
-                  <strong>15k+</strong>
-                  <span>Trips planned</span>
+                  <strong>Private guide</strong>
+                  <span>Selected experiences</span>
                 </div>
                 <div class="stat">
-                  <strong>24/7</strong>
-                  <span>Dedicated support</span>
+                  <strong>Concierge</strong>
+                  <span>Before and during trip</span>
                 </div>
               </div>
+
+              <a href="#contact" class="hero-card-link">Request this journey</a>
             </aside>
           </div>
         </section>
       </div>
     </header>
 
-    <div class="trust-bar" aria-label="Trust indicators">
+    <section class="trust-bar" aria-label="Trust indicators">
       <div class="container">
-        <div class="trust-bar-card">
+        <div class="trust-bar-card reveal">
           <div class="trust-item">
-            <strong>98%</strong>
+            <strong data-count="98">98%</strong>
             <span>Customer satisfaction</span>
           </div>
           <div class="trust-item">
-            <strong>40+</strong>
-            <span>Local partners</span>
+            <strong data-count="40">40+</strong>
+            <span>Trusted local partners</span>
           </div>
           <div class="trust-item">
-            <strong>12 yrs</strong>
+            <strong data-count="12">12 yrs</strong>
             <span>Industry experience</span>
           </div>
           <div class="trust-item">
-            <strong>100%</strong>
-            <span>Tailored planning</span>
+            <strong data-count="15000">15k+</strong>
+            <span>Trips thoughtfully planned</span>
           </div>
         </div>
       </div>
-    </div>
+    </section>
 
     <main id="main-content">
       <section class="section" id="packages" aria-labelledby="packages-title">
         <div class="container">
-          <div class="section-header">
+          <div class="section-header reveal">
             <span class="eyebrow">Travel styles</span>
             <h2 class="section-title" id="packages-title">
-              Choose the experience that fits you best
+              Choose the experience that fits your travel style
             </h2>
             <p class="section-description">
-              Whether you prefer social adventures, private routes, or elevated
-              comfort, our travel packages adapt to different travel styles and
-              goals.
+              Whether you are looking for shared adventures, private
+              flexibility, or elevated comfort, our travel experiences are
+              shaped to match how you want to explore.
             </p>
           </div>
 
@@ -197,13 +231,19 @@
                 <div class="package-icon" aria-hidden="true">🌍</div>
                 <h3>Group Travels</h3>
                 <p>
-                  Join curated routes and enjoy social experiences, cultural
-                  highlights, and expert guidance with fellow travelers.
+                  Ideal for travelers who enjoy curated routes, social energy,
+                  and destination highlights shared with like-minded explorers.
                 </p>
+
+                <ul class="feature-list" aria-label="Group Travels highlights">
+                  <li>Ideal for cultural routes</li>
+                  <li>Shared experiences</li>
+                  <li>From 4 to 8 days</li>
+                </ul>
+
                 <a class="card-link" href="#contact">
-                  Plan this experience<span class="sr-only">
-                    for Group Travels</span
-                  >
+                  Plan this experience
+                  <span class="sr-only">for Group Travels</span>
                 </a>
               </div>
             </article>
@@ -213,29 +253,43 @@
                 <div class="package-icon" aria-hidden="true">🧳</div>
                 <h3>Private Tours</h3>
                 <p>
-                  Travel on your own terms with flexible schedules, custom
-                  stops, and more personal, intimate experiences.
+                  Designed for travelers who want more control, more privacy,
+                  and itineraries tailored around their own pace and priorities.
                 </p>
+
+                <ul class="feature-list" aria-label="Private Tours highlights">
+                  <li>Flexible daily planning</li>
+                  <li>Tailored stops and pacing</li>
+                  <li>Ideal for couples or families</li>
+                </ul>
+
                 <a class="card-link" href="#contact">
-                  Plan this experience<span class="sr-only">
-                    for Private Tours</span
-                  >
+                  Plan this experience
+                  <span class="sr-only">for Private Tours</span>
                 </a>
               </div>
             </article>
 
-            <article class="card reveal">
+            <article class="card reveal featured-card">
               <div class="card-body">
+                <div class="card-badge">Most requested</div>
                 <div class="package-icon" aria-hidden="true">✨</div>
                 <h3>Luxury Escapes</h3>
                 <p>
-                  Enjoy premium stays, elevated comfort, seamless logistics, and
-                  carefully selected high-end experiences.
+                  Premium stays, seamless logistics, and refined experiences for
+                  travelers who value comfort, exclusivity, and thoughtful
+                  details.
                 </p>
+
+                <ul class="feature-list" aria-label="Luxury Escapes highlights">
+                  <li>High-end accommodations</li>
+                  <li>Private concierge support</li>
+                  <li>Elevated travel planning</li>
+                </ul>
+
                 <a class="card-link" href="#contact">
-                  Plan this experience<span class="sr-only">
-                    for Luxury Escapes</span
-                  >
+                  Plan this experience
+                  <span class="sr-only">for Luxury Escapes</span>
                 </a>
               </div>
             </article>
@@ -249,14 +303,15 @@
         aria-labelledby="itineraries-title"
       >
         <div class="container">
-          <div class="section-header">
+          <div class="section-header reveal">
             <span class="eyebrow">Featured itineraries</span>
             <h2 class="section-title" id="itineraries-title">
-              Explore our most requested journeys
+              Explore some of our most requested journeys
             </h2>
             <p class="section-description">
-              Discover curated experiences designed to balance culture, scenery,
-              and relaxation in some of the world’s most inspiring destinations.
+              Each itinerary is designed to balance destination highlights,
+              local authenticity, and a smoother travel experience from start to
+              finish.
             </p>
           </div>
 
@@ -268,16 +323,24 @@
                 loading="lazy"
               />
               <div class="card-body">
+                <div class="itinerary-topline">
+                  <span>5 days</span>
+                  <span>From \$1,350</span>
+                </div>
                 <h3>Historic Rome Experience</h3>
                 <p>
-                  Explore ancient landmarks, charming neighborhoods, and rich
-                  culinary traditions in one of Europe’s most iconic
-                  destinations.
+                  Discover ancient landmarks, elegant city stays, and culinary
+                  moments that bring one of Europe’s most iconic destinations to
+                  life.
                 </p>
                 <div class="itinerary-meta">
-                  <span>5 days</span>
                   <span>Cultural immersion</span>
+                  <span>Ideal for first-time visitors</span>
                 </div>
+                <a class="card-link" href="#contact">
+                  Request this itinerary
+                  <span class="sr-only">for Historic Rome Experience</span>
+                </a>
               </div>
             </article>
 
@@ -288,15 +351,24 @@
                 loading="lazy"
               />
               <div class="card-body">
+                <div class="itinerary-topline">
+                  <span>7 days</span>
+                  <span>From \$2,100</span>
+                </div>
                 <h3>Adventure in the Swiss Alps</h3>
                 <p>
-                  Enjoy scenic rail routes, alpine villages, and mountain
-                  adventures in a journey designed for outdoor enthusiasts.
+                  Scenic rail journeys, alpine villages, and curated outdoor
+                  activities for travelers seeking comfort with a sense of
+                  adventure.
                 </p>
                 <div class="itinerary-meta">
-                  <span>7 days</span>
                   <span>Adventure & nature</span>
+                  <span>Best for active travelers</span>
                 </div>
+                <a class="card-link" href="#contact">
+                  Request this itinerary
+                  <span class="sr-only">for Adventure in the Swiss Alps</span>
+                </a>
               </div>
             </article>
 
@@ -307,15 +379,23 @@
                 loading="lazy"
               />
               <div class="card-body">
+                <div class="itinerary-topline">
+                  <span>6 days</span>
+                  <span>From \$1,900</span>
+                </div>
                 <h3>Tropical Beach Getaway</h3>
                 <p>
-                  Slow down with oceanfront stays, turquoise water, and a
-                  peaceful atmosphere built for total relaxation.
+                  Oceanfront stays, slower mornings, and curated relaxation in a
+                  peaceful destination built for rest, reconnection, and ease.
                 </p>
                 <div class="itinerary-meta">
-                  <span>6 days</span>
                   <span>Relaxation & leisure</span>
+                  <span>Perfect for couples</span>
                 </div>
+                <a class="card-link" href="#contact">
+                  Request this itinerary
+                  <span class="sr-only">for Tropical Beach Getaway</span>
+                </a>
               </div>
             </article>
           </div>
@@ -328,44 +408,51 @@
         aria-labelledby="benefits-title"
       >
         <div class="container">
-          <div class="section-header">
+          <div class="section-header reveal">
             <span class="eyebrow">Why travelers choose us</span>
             <h2 class="section-title" id="benefits-title">
-              A smoother and smarter way to travel
+              A more thoughtful and polished way to travel
             </h2>
             <p class="section-description">
-              We simplify planning so you can focus on the experience, not the
-              logistics.
+              We help travelers move from broad travel ideas to clear,
+              personalized, and well-structured journeys.
             </p>
           </div>
 
           <div class="benefits-grid">
             <article class="benefit-card reveal">
+              <div class="benefit-icon" aria-hidden="true">✧</div>
               <h3>Curated itineraries</h3>
               <p>
-                Balanced routes that combine must-see highlights with authentic
-                local moments.
+                Balanced plans that combine must-see landmarks with meaningful
+                local experiences.
               </p>
             </article>
+
             <article class="benefit-card reveal">
+              <div class="benefit-icon" aria-hidden="true">⌘</div>
               <h3>Trusted local expertise</h3>
               <p>
-                Reliable partnerships and destination knowledge that improve
-                every trip.
+                Reliable destination knowledge and selected partnerships that
+                improve every trip.
               </p>
             </article>
+
             <article class="benefit-card reveal">
+              <div class="benefit-icon" aria-hidden="true">◌</div>
               <h3>Flexible planning</h3>
               <p>
-                Travel experiences shaped around your pace, preferences, and
+                Travel experiences adapted around your preferences, pace, and
                 priorities.
               </p>
             </article>
+
             <article class="benefit-card reveal">
+              <div class="benefit-icon" aria-hidden="true">✓</div>
               <h3>Responsive support</h3>
               <p>
-                Ongoing assistance before, during, and after the journey
-                whenever needed.
+                Guidance before departure and dependable support while you are
+                away.
               </p>
             </article>
           </div>
@@ -378,39 +465,61 @@
         aria-labelledby="testimonials-title"
       >
         <div class="container">
-          <div class="section-header">
+          <div class="section-header reveal">
             <span class="eyebrow">Traveler reviews</span>
             <h2 class="section-title" id="testimonials-title">
-              What our travelers say
+              Trusted by travelers who value detail and ease
             </h2>
             <p class="section-description">
-              Realistic social proof helps make the experience feel more
-              trustworthy and complete.
+              Hear how thoughtful planning and curated experiences made each
+              journey feel smoother, richer, and more memorable.
             </p>
           </div>
 
           <div class="testimonial-grid">
             <article class="testimonial-card reveal">
+              <div class="testimonial-rating" aria-label="5 out of 5 stars">
+                ★★★★★
+              </div>
               <blockquote>
-                “Everything felt effortless, from the itinerary planning to the
-                local recommendations. It was thoughtful, smooth, and genuinely
-                memorable.”
+                “Everything felt effortless, from the planning process to the
+                final itinerary. The recommendations felt personal and the trip
+                itself was seamless.”
               </blockquote>
-              <footer>— Emma R., Rome itinerary</footer>
+              <footer>
+                <strong>Emma R.</strong>
+                <span>Rome cultural itinerary</span>
+              </footer>
             </article>
+
             <article class="testimonial-card reveal">
+              <div class="testimonial-rating" aria-label="5 out of 5 stars">
+                ★★★★★
+              </div>
               <blockquote>
                 “The Swiss Alps trip had the perfect balance between comfort and
-                adventure. Every detail felt intentionally selected.”
+                adventure. Every stop felt intentionally selected and
+                beautifully timed.”
               </blockquote>
-              <footer>— Daniel T., Alpine escape</footer>
+              <footer>
+                <strong>Daniel T.</strong>
+                <span>Alpine escape</span>
+              </footer>
             </article>
+
             <article class="testimonial-card reveal">
+              <div class="testimonial-rating" aria-label="5 out of 5 stars">
+                ★★★★★
+              </div>
               <blockquote>
                 “We wanted a stress-free honeymoon and got exactly that. The
-                planning process was clear, supportive, and personalized.”
+                communication was clear, the planning was thoughtful, and the
+                final experience exceeded expectations.”
               </blockquote>
-              <footer>— Sofia & Marcus, beach getaway</footer>
+              <footer>
+                <strong>Sofia & Marcus</strong>
+                <span>Tropical getaway</span>
+              </footer>
             </article>
           </div>
         </div>
@@ -418,14 +527,14 @@
 
       <section class="section" id="faq" aria-labelledby="faq-title">
         <div class="container">
-          <div class="section-header">
+          <div class="section-header reveal">
             <span class="eyebrow">Frequently asked questions</span>
             <h2 class="section-title" id="faq-title">
               Answers before you book
             </h2>
             <p class="section-description">
-              A helpful FAQ section adds clarity and gives the landing page a
-              more complete product feel.
+              Find quick answers about customization, travel planning timelines,
+              and how we shape each itinerary around your goals.
             </p>
           </div>
 
@@ -433,22 +542,34 @@
             <details class="faq-item reveal">
               <summary>Can I request a fully custom itinerary?</summary>
               <p>
-                Yes. We can design a trip around your preferred destinations,
-                dates, accommodation style, and activity interests.
+                Yes. We can build a journey around your preferred destinations,
+                travel dates, accommodation style, and activity interests.
               </p>
             </details>
+
             <details class="faq-item reveal">
               <summary>Do you plan trips for couples and families?</summary>
               <p>
                 Absolutely. We tailor experiences for solo travelers, couples,
-                families, and private groups.
+                families, and private groups with different travel preferences.
               </p>
             </details>
+
             <details class="faq-item reveal">
-              <summary>How far in advance should I plan my trip?</summary>
+              <summary>How far in advance should I start planning?</summary>
               <p>
-                Ideally between 2 and 6 months in advance, especially for
-                high-demand seasons and premium destinations.
+                We recommend planning between 2 and 6 months ahead, especially
+                for premium destinations, seasonal demand, or more personalized
+                journeys.
+              </p>
+            </details>
+
+            <details class="faq-item reveal">
+              <summary>Can you work with different budget ranges?</summary>
+              <p>
+                Yes. We tailor recommendations based on your comfort level,
+                priorities, and expected experience, from smart premium options
+                to more elevated escapes.
               </p>
             </details>
           </div>
@@ -457,42 +578,45 @@
 
       <section class="section" id="contact" aria-labelledby="contact-title">
         <div class="container">
-          <div class="section-header">
+          <div class="section-header reveal">
             <span class="eyebrow">Start your next trip</span>
             <h2 class="section-title" id="contact-title">
               Tell us about your ideal journey
             </h2>
             <p class="section-description">
-              Share your travel plans and preferences, and we’ll help shape a
-              personalized experience.
+              Share your destination, timing, and travel style, and we’ll help
+              shape a personalized experience with clarity and care.
             </p>
           </div>
 
           <div class="contact-shell">
-            <aside class="contact-panel" aria-labelledby="contact-panel-title">
+            <aside
+              class="contact-panel reveal"
+              aria-labelledby="contact-panel-title"
+            >
               <h3 id="contact-panel-title">Why plan with WanderScape?</h3>
               <p>
-                We turn broad travel ideas into polished and realistic
-                itineraries, always keeping comfort, clarity, and experience in
-                mind.
+                We turn broad travel ideas into polished itineraries that feel
+                realistic, memorable, and thoughtfully paced from the first
+                conversation onward.
               </p>
 
               <ul class="contact-list">
-                <li>Custom destination recommendations</li>
-                <li>Optimized routes and travel timelines</li>
+                <li>Destination and route recommendations</li>
+                <li>Travel pacing optimized around your goals</li>
                 <li>Accommodation and experience planning</li>
                 <li>Support from inquiry to departure</li>
               </ul>
             </aside>
 
-            <div class="contact-form-card">
-              <form id="contact-form" action="#" method="post" novalidate>
+            <div class="contact-form-card reveal">
+              <form id="contact-form" action="/" method="post" novalidate>
                 <div class="form-grid">
                   <div class="form-row">
                     <div class="form-group">
-                      <label for="name"
-                        >Full name <span class="required">*</span></label
-                      >
+                      <label for="name">
+                        Full name <span class="required">*</span>
+                      </label>
                       <input
                         type="text"
                         id="name"
@@ -500,6 +624,7 @@
                         autocomplete="name"
                         placeholder="Jane Smith"
                         required
+                        maxlength="80"
                         aria-describedby="name-error"
                       />
                       <p
@@ -510,9 +635,9 @@
                     </div>
 
                     <div class="form-group">
-                      <label for="email"
-                        >Email address <span class="required">*</span></label
-                      >
+                      <label for="email">
+                        Email address <span class="required">*</span>
+                      </label>
                       <input
                         type="email"
                         id="email"
@@ -520,6 +645,7 @@
                         autocomplete="email"
                         placeholder="jane@example.com"
                         required
+                        maxlength="120"
                         aria-describedby="email-error"
                       />
                       <p
@@ -532,10 +658,9 @@
 
                   <div class="form-row">
                     <div class="form-group">
-                      <label for="package"
-                        >Preferred package
-                        <span class="required">*</span></label
-                      >
+                      <label for="package">
+                        Preferred package <span class="required">*</span>
+                      </label>
                       <select
                         id="package"
                         name="package"
@@ -562,6 +687,7 @@
                         name="travelers"
                         min="1"
                         max="20"
+                        inputmode="numeric"
                         placeholder="2"
                         aria-describedby="travelers-error"
                       />
@@ -573,17 +699,65 @@
                     </div>
                   </div>
 
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label for="destination">Preferred destination</label>
+                      <input
+                        type="text"
+                        id="destination"
+                        name="destination"
+                        autocomplete="off"
+                        placeholder="Italy, Switzerland, Bali..."
+                        maxlength="100"
+                        aria-describedby="destination-error"
+                      />
+                      <p
+                        class="field-error"
+                        id="destination-error"
+                        aria-live="polite"
+                      ></p>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="budget">Estimated budget</label>
+                      <select
+                        id="budget"
+                        name="budget"
+                        aria-describedby="budget-error"
+                      >
+                        <option value="">Select a range</option>
+                        <option value="1500-3000">\$1,500 – \$3,000</option>
+                        <option value="3000-5000">\$3,000 – \$5,000</option>
+                        <option value="5000-8000">\$5,000 – \$8,000</option>
+                        <option value="8000+">\$8,000+</option>
+                      </select>
+                      <p
+                        class="field-error"
+                        id="budget-error"
+                        aria-live="polite"
+                      ></p>
+                    </div>
+                  </div>
+
                   <div class="form-group">
-                    <label for="message"
-                      >Trip details <span class="required">*</span></label
-                    >
+                    <label for="message">
+                      Trip details <span class="required">*</span>
+                    </label>
                     <textarea
                       id="message"
                       name="message"
                       placeholder="Tell us about your destination, dates, budget range, and travel preferences"
                       required
-                      aria-describedby="message-error"
+                      maxlength="600"
+                      aria-describedby="message-error message-help"
                     ></textarea>
+                    <div class="field-meta">
+                      <p id="message-help" class="field-help">
+                        Include destination ideas, travel dates, style, and any
+                        important preferences.
+                      </p>
+                      <p id="message-count" class="field-count">0 / 600</p>
+                    </div>
                     <p
                       class="field-error"
                       id="message-error"
@@ -600,7 +774,7 @@
                       <span class="btn-text">Send Inquiry</span>
                     </button>
                     <p class="form-note">
-                      We only use your information to respond to your request.
+                      We only use your information to respond to your inquiry.
                     </p>
                   </div>
 
@@ -618,6 +792,8 @@
       </section>
     </main>
 
+    <a href="#contact" class="mobile-cta">Plan Your Trip</a>
+
     <footer class="site-footer">
       <div class="container">
         <div class="footer-grid">
@@ -626,7 +802,7 @@
             <p>
               Curated travel experiences for people who value thoughtful
               planning, memorable destinations, and a smoother journey from
-              start to finish.
+              inquiry to departure.
             </p>
           </section>
 
