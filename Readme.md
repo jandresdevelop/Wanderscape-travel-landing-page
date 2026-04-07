@@ -87,8 +87,6 @@ WanderScape-Travel/
 
 ## Design and Development Goals
 
-This project was improved with the intention of reaching a **portfolio premium** standard appropriate for a **semi-senior or senior-style presentation**.
-
 Key goals included:
 
 - creating a strong visual identity,
@@ -157,8 +155,7 @@ The contact form includes client-side validation for:
 
 Validation feedback is shown inline and announced through accessible status messaging.
 
-> **Note:** this project currently simulates form submission on the frontend.  
-> For production use, the form should be connected to a real backend or form handling service.
+> **Note:** this project currently simulates form submission on the frontend. .
 
 ---
 
