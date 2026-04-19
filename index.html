@@ -10,6 +10,7 @@
     />
     <meta name="author" content="Jose Andres Hernandez" />
     <meta name="theme-color" content="#0f766e" />
+    <meta name="color-scheme" content="light" />
 
     <meta property="og:type" content="website" />
     <meta
@@ -25,6 +26,8 @@
       property="og:image"
       content="https://wanderscape-demo.vercel.app/assets/screenshots/preview-cover.png"
     />
+    <meta property="og:site_name" content="WanderScape Travel" />
+    <meta property="og:locale" content="en_US" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta
@@ -41,7 +44,8 @@
     />
 
     <link rel="canonical" href="https://wanderscape-demo.vercel.app/" />
-    <link rel="icon" href="./assets/favi.ico" />
+    <link rel="icon" href="./assets/favi.ico" sizes="any" />
+    <link rel="apple-touch-icon" href="./assets/favi.ico" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -111,6 +115,8 @@
           <a href="#contact" class="btn btn-nav">Plan Your Trip</a>
         </div>
       </div>
+
+      <div class="nav-overlay" hidden aria-hidden="true"></div>
 
       <div class="container">
         <section class="hero" aria-labelledby="hero-title">
@@ -321,6 +327,7 @@
                 src="./assets/images/colosseo.webp"
                 alt="The Colosseum in Rome during a sunny day"
                 loading="lazy"
+                decoding="async"
               />
               <div class="card-body">
                 <div class="itinerary-topline">
@@ -349,6 +356,7 @@
                 src="./assets/images/alps.webp"
                 alt="Snowy mountains in the Swiss Alps with a clear blue sky"
                 loading="lazy"
+                decoding="async"
               />
               <div class="card-body">
                 <div class="itinerary-topline">
@@ -377,6 +385,7 @@
                 src="./assets/images/sea.webp"
                 alt="Crystal clear sea beside a tropical beach with palm trees"
                 loading="lazy"
+                decoding="async"
               />
               <div class="card-body">
                 <div class="itinerary-topline">
@@ -646,6 +655,7 @@
                         placeholder="jane@example.com"
                         required
                         maxlength="120"
+                        inputmode="email"
                         aria-describedby="email-error"
                       />
                       <p
@@ -749,14 +759,20 @@
                       placeholder="Tell us about your destination, dates, budget range, and travel preferences"
                       required
                       maxlength="600"
-                      aria-describedby="message-error message-help"
+                      aria-describedby="message-error message-help message-count"
                     ></textarea>
                     <div class="field-meta">
                       <p id="message-help" class="field-help">
                         Include destination ideas, travel dates, style, and any
                         important preferences.
                       </p>
-                      <p id="message-count" class="field-count">0 / 600</p>
+                      <p
+                        id="message-count"
+                        class="field-count"
+                        aria-live="polite"
+                      >
+                        0 / 600
+                      </p>
                     </div>
                     <p
                       class="field-error"

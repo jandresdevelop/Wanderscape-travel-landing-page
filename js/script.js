@@ -1,36 +1,125 @@
+const SELECTORS = {
+  topbar: ".topbar",
+  navToggle: ".nav-toggle",
+  siteNav: ".site-nav",
+  navOverlay: ".nav-overlay",
+  navLinks: ".site-nav a",
+  navActiveLinks: "[data-nav-link]",
+  mainSections: "main section[id]",
+  progressBar: ".scroll-progress-bar",
+  revealElements: ".reveal",
+  contactForm: "#contact-form",
+  formStatus: "#form-status",
+  submitButton: "#submit-button",
+  messageField: "#message",
+  messageCount: "#message-count",
+  countTargets: "[data-count]",
+};
+
+const BREAKPOINTS = {
+  mobileNav: 768,
+};
+
+function getFocusableElements(container) {
+  if (!container) return [];
+
+  const focusableSelector = [
+    "a[href]",
+    "button:not([disabled])",
+    'input:not([disabled]):not([type="hidden"])',
+    "select:not([disabled])",
+    "textarea:not([disabled])",
+    '[tabindex]:not([tabindex="-1"])',
+  ].join(",");
+
+  return [...container.querySelectorAll(focusableSelector)].filter(
+    (element) =>
+      !element.hasAttribute("disabled") &&
+      !element.getAttribute("aria-hidden") &&
+      element.offsetParent !== null,
+  );
+}
+
 function setupMobileNav() {
-  const navToggle = document.querySelector(".nav-toggle");
-  const siteNav = document.querySelector(".site-nav");
-  const navLinks = document.querySelectorAll(".site-nav a");
-  const topbar = document.querySelector(".topbar");
+  const navToggle = document.querySelector(SELECTORS.navToggle);
+  const siteNav = document.querySelector(SELECTORS.siteNav);
+  const navOverlay = document.querySelector(SELECTORS.navOverlay);
+  const navLinks = [...document.querySelectorAll(SELECTORS.navLinks)];
 
-  if (!navToggle || !siteNav || !topbar) return;
+  if (!navToggle || !siteNav || !navOverlay || !navLinks.length) return;
 
-  const firstNavLink = navLinks[0] || null;
+  let isMenuOpen = false;
+  let lastFocusedElement = null;
 
-  const openMenu = () => {
-    siteNav.classList.add("is-open");
-    navToggle.setAttribute("aria-expanded", "true");
-    navToggle.setAttribute("aria-label", "Close navigation menu");
-    document.body.style.overflow = "hidden";
-    firstNavLink?.focus();
+  const syncMenuState = (open) => {
+    navToggle.setAttribute("aria-expanded", String(open));
+    navToggle.setAttribute(
+      "aria-label",
+      open ? "Close navigation menu" : "Open navigation menu",
+    );
+
+    navToggle.classList.toggle("is-active", open);
+    siteNav.classList.toggle("is-open", open);
+    navOverlay.classList.toggle("is-visible", open);
+    navOverlay.hidden = !open;
+    navOverlay.setAttribute("aria-hidden", String(!open));
+    document.body.classList.toggle("nav-open", open);
   };
 
-  const closeMenu = () => {
-    siteNav.classList.remove("is-open");
-    navToggle.setAttribute("aria-expanded", "false");
-    navToggle.setAttribute("aria-label", "Open navigation menu");
-    document.body.style.overflow = "";
+  const openMenu = () => {
+    if (isMenuOpen) return;
+
+    isMenuOpen = true;
+    lastFocusedElement = document.activeElement;
+    syncMenuState(true);
+
+    const focusableItems = getFocusableElements(siteNav);
+    focusableItems[0]?.focus();
+  };
+
+  const closeMenu = ({ returnFocus = false } = {}) => {
+    if (!isMenuOpen) return;
+
+    isMenuOpen = false;
+    syncMenuState(false);
+
+    if (returnFocus && lastFocusedElement instanceof HTMLElement) {
+      lastFocusedElement.focus();
+    }
+  };
+
+  const trapFocus = (event) => {
+    if (!isMenuOpen || event.key !== "Tab") return;
+
+    const focusableItems = getFocusableElements(siteNav);
+    if (!focusableItems.length) return;
+
+    const firstElement = focusableItems[0];
+    const lastElement = focusableItems[focusableItems.length - 1];
+    const activeElement = document.activeElement;
+
+    if (event.shiftKey && activeElement === firstElement) {
+      event.preventDefault();
+      lastElement.focus();
+      return;
+    }
+
+    if (!event.shiftKey && activeElement === lastElement) {
+      event.preventDefault();
+      firstElement.focus();
+    }
   };
 
   navToggle.addEventListener("click", () => {
-    const isOpen = siteNav.classList.contains("is-open");
-    if (isOpen) {
-      closeMenu();
-      navToggle.focus();
+    if (isMenuOpen) {
+      closeMenu({ returnFocus: true });
     } else {
       openMenu();
     }
+  });
+
+  navOverlay.addEventListener("click", () => {
+    closeMenu({ returnFocus: true });
   });
 
   navLinks.forEach((link) => {
@@ -39,40 +128,43 @@ function setupMobileNav() {
     });
   });
 
+  document.addEventListener("keydown", (event) => {
+    if (!isMenuOpen) return;
+
+    if (event.key === "Escape") {
+      closeMenu({ returnFocus: true });
+      return;
+    }
+
+    trapFocus(event);
+  });
+
   document.addEventListener("click", (event) => {
-    const isMenuOpen = siteNav.classList.contains("is-open");
+    if (!isMenuOpen) return;
+
     const clickedInsideNav = siteNav.contains(event.target);
     const clickedToggle = navToggle.contains(event.target);
 
-    if (isMenuOpen && !clickedInsideNav && !clickedToggle) {
+    if (!clickedInsideNav && !clickedToggle) {
       closeMenu();
-    }
-  });
-
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && siteNav.classList.contains("is-open")) {
-      closeMenu();
-      navToggle.focus();
     }
   });
 
   window.addEventListener("resize", () => {
-    if (window.innerWidth > 768 && siteNav.classList.contains("is-open")) {
+    if (window.innerWidth > BREAKPOINTS.mobileNav && isMenuOpen) {
       closeMenu();
     }
   });
+
+  syncMenuState(false);
 }
 
 function setupHeaderScrollState() {
-  const topbar = document.querySelector(".topbar");
+  const topbar = document.querySelector(SELECTORS.topbar);
   if (!topbar) return;
 
   const updateHeaderState = () => {
-    if (window.scrollY > 24) {
-      topbar.classList.add("is-scrolled");
-    } else {
-      topbar.classList.remove("is-scrolled");
-    }
+    topbar.classList.toggle("is-scrolled", window.scrollY > 24);
   };
 
   updateHeaderState();
@@ -80,17 +172,17 @@ function setupHeaderScrollState() {
 }
 
 function setupActiveNavLinks() {
-  const sections = document.querySelectorAll("main section[id]");
-  const navLinks = document.querySelectorAll("[data-nav-link]");
+  const sections = [...document.querySelectorAll(SELECTORS.mainSections)];
+  const navLinks = [...document.querySelectorAll(SELECTORS.navActiveLinks)];
 
   if (!sections.length || !navLinks.length) return;
 
-  const linkMap = new Map();
+  const linksMap = new Map();
 
   navLinks.forEach((link) => {
     const href = link.getAttribute("href");
     if (!href || !href.startsWith("#")) return;
-    linkMap.set(href.slice(1), link);
+    linksMap.set(href.slice(1), link);
   });
 
   const setActiveLink = (sectionId) => {
@@ -99,7 +191,7 @@ function setupActiveNavLinks() {
       link.removeAttribute("aria-current");
     });
 
-    const activeLink = linkMap.get(sectionId);
+    const activeLink = linksMap.get(sectionId);
     if (!activeLink) return;
 
     activeLink.classList.add("is-active");
@@ -114,8 +206,10 @@ function setupActiveNavLinks() {
 
       if (!visibleEntries.length) return;
 
-      const currentSection = visibleEntries[0].target.getAttribute("id");
-      if (currentSection) setActiveLink(currentSection);
+      const currentSection = visibleEntries[0].target.id;
+      if (currentSection) {
+        setActiveLink(currentSection);
+      }
     },
     {
       root: null,
@@ -128,7 +222,7 @@ function setupActiveNavLinks() {
 }
 
 function setupScrollProgress() {
-  const progressBar = document.querySelector(".scroll-progress-bar");
+  const progressBar = document.querySelector(SELECTORS.progressBar);
   if (!progressBar) return;
 
   const updateProgress = () => {
@@ -136,6 +230,7 @@ function setupScrollProgress() {
     const scrollHeight =
       document.documentElement.scrollHeight - window.innerHeight;
     const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+
     progressBar.style.width = `${Math.min(Math.max(progress, 0), 100)}%`;
   };
 
@@ -145,8 +240,8 @@ function setupScrollProgress() {
 }
 
 function setupMessageCounter() {
-  const messageField = document.querySelector("#message");
-  const messageCount = document.querySelector("#message-count");
+  const messageField = document.querySelector(SELECTORS.messageField);
+  const messageCount = document.querySelector(SELECTORS.messageCount);
 
   if (!messageField || !messageCount) return;
 
@@ -162,9 +257,9 @@ function setupMessageCounter() {
 }
 
 function setupFormValidation() {
-  const form = document.querySelector("#contact-form");
-  const formStatus = document.querySelector("#form-status");
-  const submitButton = document.querySelector("#submit-button");
+  const form = document.querySelector(SELECTORS.contactForm);
+  const formStatus = document.querySelector(SELECTORS.formStatus);
+  const submitButton = document.querySelector(SELECTORS.submitButton);
   const submitButtonText = submitButton?.querySelector(".btn-text");
 
   if (!form || !formStatus || !submitButton || !submitButtonText) return;
@@ -186,9 +281,11 @@ function setupFormValidation() {
     numericRange(value, min, max, message) {
       if (!value.trim()) return "";
       const number = Number(value);
+
       if (Number.isNaN(number) || number < min || number > max) {
         return message;
       }
+
       return "";
     },
   };
@@ -211,14 +308,11 @@ function setupFormValidation() {
         );
         if (minError) return minError;
 
-        const maxError = validators.maxLength(
+        return validators.maxLength(
           value,
           80,
           "Name must be 80 characters or fewer.",
         );
-        if (maxError) return maxError;
-
-        return "";
       },
     },
     email: {
@@ -231,21 +325,14 @@ function setupFormValidation() {
         );
         if (requiredError) return requiredError;
 
-        const emailError = validators.email(
-          value,
-          "Please enter a valid email address.",
-        );
-        if (emailError) return emailError;
-
-        return "";
+        return validators.email(value, "Please enter a valid email address.");
       },
     },
     package: {
       input: document.querySelector("#package"),
       error: document.querySelector("#package-error"),
       validate: (value) => {
-        if (!value) return "Please select a preferred package.";
-        return "";
+        return value ? "" : "Please select a preferred package.";
       },
     },
     travelers: {
@@ -264,6 +351,7 @@ function setupFormValidation() {
       error: document.querySelector("#destination-error"),
       validate: (value) => {
         if (!value.trim()) return "";
+
         return validators.maxLength(
           value,
           100,
@@ -293,14 +381,11 @@ function setupFormValidation() {
         );
         if (minError) return minError;
 
-        const maxError = validators.maxLength(
+        return validators.maxLength(
           value,
           600,
           "Trip details must be 600 characters or fewer.",
         );
-        if (maxError) return maxError;
-
-        return "";
       },
     },
   };
@@ -308,6 +393,11 @@ function setupFormValidation() {
   const fieldEntries = Object.entries(fields).filter(
     ([, field]) => field.input && field.error,
   );
+
+  const clearFormStatus = () => {
+    formStatus.textContent = "";
+    formStatus.classList.remove("success", "error");
+  };
 
   const setFieldState = (fieldName) => {
     const field = fields[fieldName];
@@ -333,12 +423,19 @@ function setupFormValidation() {
     return true;
   };
 
+  const resetFieldsState = () => {
+    fieldEntries.forEach(([, field]) => {
+      field.input.classList.remove("input-error", "input-valid");
+      field.input.removeAttribute("aria-invalid");
+      field.error.textContent = "";
+    });
+  };
+
   fieldEntries.forEach(([fieldName, field]) => {
     field.input.addEventListener("input", () => {
       setFieldState(fieldName);
       if (formStatus.textContent) {
-        formStatus.textContent = "";
-        formStatus.classList.remove("success", "error");
+        clearFormStatus();
       }
     });
 
@@ -375,8 +472,7 @@ function setupFormValidation() {
 
     submitButton.disabled = true;
     submitButtonText.textContent = "Sending...";
-    formStatus.textContent = "";
-    formStatus.classList.remove("success", "error");
+    clearFormStatus();
 
     try {
       await new Promise((resolve) => setTimeout(resolve, 1200));
@@ -387,18 +483,13 @@ function setupFormValidation() {
       formStatus.classList.add("success");
 
       form.reset();
+      resetFieldsState();
 
-      fieldEntries.forEach(([, field]) => {
-        field.input.classList.remove("input-error", "input-valid");
-        field.input.removeAttribute("aria-invalid");
-        field.error.textContent = "";
-      });
-
-      const messageCount = document.querySelector("#message-count");
+      const messageCount = document.querySelector(SELECTORS.messageCount);
       if (messageCount) {
         messageCount.textContent = "0 / 600";
       }
-    } catch (error) {
+    } catch {
       formStatus.textContent =
         "Something went wrong while sending your inquiry. Please try again.";
       formStatus.classList.remove("success");
@@ -411,12 +502,14 @@ function setupFormValidation() {
 }
 
 function setupRevealAnimations() {
-  const revealElements = document.querySelectorAll(".reveal");
+  const revealElements = [
+    ...document.querySelectorAll(SELECTORS.revealElements),
+  ];
+  if (!revealElements.length) return;
+
   const prefersReducedMotion = window.matchMedia(
     "(prefers-reduced-motion: reduce)",
   ).matches;
-
-  if (!revealElements.length) return;
 
   if (prefersReducedMotion) {
     revealElements.forEach((element) => element.classList.add("is-visible"));
@@ -427,12 +520,14 @@ function setupRevealAnimations() {
     (entries, observer) => {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
+
         entry.target.classList.add("is-visible");
         observer.unobserve(entry.target);
       });
     },
     {
       threshold: 0.15,
+      rootMargin: "0px 0px -5% 0px",
     },
   );
 
@@ -440,12 +535,12 @@ function setupRevealAnimations() {
 }
 
 function setupStatsCounter() {
-  const statNumbers = document.querySelectorAll("[data-count]");
+  const statNumbers = [...document.querySelectorAll(SELECTORS.countTargets)];
+  if (!statNumbers.length) return;
+
   const prefersReducedMotion = window.matchMedia(
     "(prefers-reduced-motion: reduce)",
   ).matches;
-
-  if (!statNumbers.length) return;
 
   const formatValue = (target) => {
     if (target >= 1000) return `${Math.floor(target / 1000)}k+`;
@@ -483,7 +578,7 @@ function setupStatsCounter() {
   };
 
   const observer = new IntersectionObserver(
-    (entries, obs) => {
+    (entries, statsObserver) => {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
 
@@ -494,7 +589,7 @@ function setupStatsCounter() {
           animateValue(element, target);
         }
 
-        obs.unobserve(element);
+        statsObserver.unobserve(element);
       });
     },
     {
